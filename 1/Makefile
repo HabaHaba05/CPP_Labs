@@ -4,9 +4,9 @@ init:
 	if ! [ -d "./output" ]; then mkdir output; fi
 	make main
 
-main: main.o sortalgorithms.o datawriter.o
+main: main.o sortalgorithms.o writer.o filewriter.o
 	cd ./obj; \
-	g++ sortalgorithms.o datawriter.o main.o -o ../bin/main.exe
+	g++ sortalgorithms.o writer.o filewriter.o main.o -o ../bin/main.exe
 
 main.o: main.cpp
 	g++ -c main.cpp -o ./obj/main.o
@@ -14,8 +14,11 @@ main.o: main.cpp
 sortalgorithms.o: sortalgorithms.cpp
 	g++ -c sortalgorithms.cpp -o ./obj/sortalgorithms.o
 
-datawriter.o: datawriter.cpp datawriter.h
-	g++ -c datawriter.cpp -o ./obj/datawriter.o
+writer.o: writer.cpp writer.h
+	g++ -c writer.cpp -o ./obj/writer.o
+
+filewriter.o: filewriter.cpp filewriter.h
+	g++ -c filewriter.cpp -o ./obj/filewriter.o
 
 clean:
 	rm ./obj/*.*  ./bin/*.* ./output/*.* 
