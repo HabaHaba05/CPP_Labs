@@ -18,5 +18,5 @@ integerfactorization.o: IntegerFactorization.cpp IntegerFactorization.h
 
 
 clean:
+	rm ./obj/*.*  ./bin/*.*
 	rmdir ./obj/ ./bin/
-	
