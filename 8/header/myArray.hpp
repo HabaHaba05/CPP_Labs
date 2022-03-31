@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-template <typename T>
+template <typename T, int MAX_SIZE = 0>
 class MyArray
 {
 private:
@@ -13,7 +13,7 @@ public:
     MyArray(int capacity = 2);
     ~MyArray();
 
-    MyArray(const MyArray<T> &);
+    MyArray(const MyArray<T, MAX_SIZE> &);
 
     // getters
     T getData(int index) const;
@@ -29,10 +29,10 @@ public:
 
     // operator overloading
     T operator[](int) const;
-    MyArray &operator=(const MyArray<T> &);
+    MyArray &operator=(const MyArray<T, MAX_SIZE> &);
 
-    template <class U>
-    friend std::ostream &operator<<(std::ostream &, const MyArray<U> &);
+    template <class U, size_t S>
+    friend std::ostream &operator<<(std::ostream &, const MyArray<U, S> &);
 
 private:
     void incSize();

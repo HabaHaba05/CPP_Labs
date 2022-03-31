@@ -1,22 +1,30 @@
 #include <iostream>
-
-template <typename T>
-MyArray<T>::MyArray(int capacity)
+#include <stdexcept>
+template <typename T, int MAX_SIZE>
+MyArray<T, MAX_SIZE>::MyArray(int capacity)
 {
     this->size = 0;
-    this->capacity = capacity;
     this->data = new T[capacity];
+
+    if (MAX_SIZE != 0)
+    {
+        this->capacity = MAX_SIZE;
+    }
+    else
+    {
+        this->capacity = capacity;
+    }
 };
 
-template <typename T>
-MyArray<T>::~MyArray()
+template <typename T, int MAX_SIZE>
+MyArray<T, MAX_SIZE>::~MyArray()
 {
     delete[] data;
     std::cout << "MyArray Object Destroyed\n";
 }
 
-template <typename T>
-MyArray<T>::MyArray(const MyArray<T> &other)
+template <typename T, int MAX_SIZE>
+MyArray<T, MAX_SIZE>::MyArray(const MyArray<T, MAX_SIZE> &other)
     : size(other.size), capacity(other.capacity)
 {
     std::cout << "COPY\n";
@@ -29,8 +37,8 @@ MyArray<T>::MyArray(const MyArray<T> &other)
 }
 
 // getters
-template <typename T>
-T MyArray<T>::getData(int index) const
+template <typename T, int MAX_SIZE>
+T MyArray<T, MAX_SIZE>::getData(int index) const
 {
     if (index >= size || index < 0)
     {
@@ -40,21 +48,21 @@ T MyArray<T>::getData(int index) const
     return this->data[index];
 }
 
-template <typename T>
-int MyArray<T>::getSize() const
+template <typename T, int MAX_SIZE>
+int MyArray<T, MAX_SIZE>::getSize() const
 {
     return this->size;
 }
 
-template <typename T>
-int MyArray<T>::getCapacity() const
+template <typename T, int MAX_SIZE>
+int MyArray<T, MAX_SIZE>::getCapacity() const
 {
     return this->capacity;
 }
 
 // setters
-template <typename T>
-void MyArray<T>::setData(int index, T data)
+template <typename T, int MAX_SIZE>
+void MyArray<T, MAX_SIZE>::setData(int index, T data)
 {
     if (index >= size || index < 0)
     {
@@ -64,8 +72,8 @@ void MyArray<T>::setData(int index, T data)
 }
 
 // methods
-template <typename T>
-void MyArray<T>::remove(int index)
+template <typename T, int MAX_SIZE>
+void MyArray<T, MAX_SIZE>::remove(int index)
 {
     if (index < size && index >= 0)
     {
@@ -77,15 +85,15 @@ void MyArray<T>::remove(int index)
     }
 }
 
-template <typename T>
-void MyArray<T>::pushBack(T data)
+template <typename T, int MAX_SIZE>
+void MyArray<T, MAX_SIZE>::pushBack(T data)
 {
     incSize();
     this->data[size - 1] = data;
 }
 
-template <typename T>
-void MyArray<T>::insert(int index, T data)
+template <typename T, int MAX_SIZE>
+void MyArray<T, MAX_SIZE>::insert(int index, T data)
 {
     if (index >= size || index < 0)
     {
@@ -103,8 +111,8 @@ void MyArray<T>::insert(int index, T data)
     this->data[index] = data;
 }
 
-template <typename T>
-void MyArray<T>::incSize()
+template <typename T, int MAX_SIZE>
+void MyArray<T, MAX_SIZE>::incSize()
 {
     if (size == capacity)
     {
@@ -114,9 +122,14 @@ void MyArray<T>::incSize()
     this->size++;
 }
 
-template <typename T>
-void MyArray<T>::resize()
+template <typename T, int MAX_SIZE>
+void MyArray<T, MAX_SIZE>::resize()
 {
+    if (MAX_SIZE != 0 && capacity == MAX_SIZE)
+    {
+        throw new std::runtime_error("Array has reached MAX SIZE");
+    }
+
     capacity *= 2;
     T *newArray = new T[capacity];
 
@@ -131,8 +144,8 @@ void MyArray<T>::resize()
 }
 
 // operator overloading
-template <typename T>
-MyArray<T> &MyArray<T>::operator=(const MyArray<T> &other)
+template <typename T, int MAX_SIZE>
+MyArray<T, MAX_SIZE> &MyArray<T, MAX_SIZE>::operator=(const MyArray<T, MAX_SIZE> &other)
 {
     if (this == &other)
         return *this;
@@ -140,14 +153,14 @@ MyArray<T> &MyArray<T>::operator=(const MyArray<T> &other)
     return *(new MyArray(other));
 }
 
-template <typename T>
-T MyArray<T>::operator[](int index) const
+template <typename T, int MAX_SIZE>
+T MyArray<T, MAX_SIZE>::operator[](int index) const
 {
     return this->getData(index);
 }
 
-template <class T>
-std::ostream &operator<<(std::ostream &output, const MyArray<T> &myArr)
+template <class T, int MAX_SIZE>
+std::ostream &operator<<(std::ostream &output, const MyArray<T, MAX_SIZE> &myArr)
 {
     output << "MyArray (Size : " << myArr.getSize() << ", Capacity: " << myArr.getCapacity() << ")\n";
     for (int i = 0; i < myArr.getSize(); i++)

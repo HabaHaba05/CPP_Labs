@@ -53,29 +53,37 @@ void first()
 void second()
 {
     cout << "-------------------------------------\n";
-    MyArray<int> *myArrayInt = new MyArray<int>();
-    cout << *myArrayInt;
+    MyArray<int, 3> myArrayInt;
+    cout << myArrayInt;
 
     for (int i = 0; i < 3; i++)
     {
-        myArrayInt->pushBack(i);
-        cout << *myArrayInt;
+        myArrayInt.pushBack(i);
+        cout << myArrayInt;
     }
 
-    myArrayInt->remove(0);
-    cout << *myArrayInt;
+    myArrayInt.remove(0);
+    cout << myArrayInt;
 
-    MyArray<string> *myArrayStr = new MyArray<string>();
+    MyArray<string> myArrayStr;
 
-    myArrayStr->pushBack("vienas");
-    cout << *myArrayStr;
-    myArrayStr->pushBack("du");
-    cout << *myArrayStr;
-    myArrayStr->pushBack("trys");
-    cout << *myArrayStr;
+    myArrayStr.pushBack("vienas");
+    cout << myArrayStr;
+    myArrayStr.pushBack("du");
+    cout << myArrayStr;
+    myArrayStr.pushBack("trys");
+    cout << myArrayStr;
 
-    myArrayStr->remove(0);
-    cout << *myArrayStr;
+    myArrayStr.remove(0);
+    cout << myArrayStr;
+
+    MyArray<int, 3> copy = myArrayInt;
+    cout << copy;
+    copy.pushBack(999);
+    cout << copy;
+    cout << myArrayInt;
+    // copy.pushBack(9990); THIS WILL THROW ERROR
+
     cout << "-------------------------------------\n";
 }
 // 2nd end
