@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "header/myArray.hpp"
-#include "header/myArrayIterator.hpp"
 #include <algorithm>
 #include <deque>
 #include <list>
@@ -82,7 +81,7 @@ void second()
     }
     cout << endl;
 
-    MyArray<int> testCopy(10);
+    MyArray<int> testCopy;
     copy(x.begin(), x.end(), testCopy.begin());
     for (MyArray<int>::Iterator it = testCopy.begin(); it != testCopy.end(); it++)
     {

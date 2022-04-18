@@ -152,3 +152,13 @@ std::ostream &operator<<(std::ostream &output, const MyArray<T> &myArr)
     output << "\n";
     return output;
 }
+
+template <typename T>
+MyArray<T>::Iterator::Iterator(MyArray<T> &myArray, int position)
+    : myArray(myArray), position(position) {}
+
+template <typename T>
+T &MyArray<T>::Iterator::operator*() { return myArray[position]; }
+
+template <typename T>
+T *MyArray<T>::Iterator::operator->() { return &myArray[position]; }

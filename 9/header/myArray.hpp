@@ -10,6 +10,11 @@ private:
     int capacity;
 
 public:
+    MyArray(int capacity = 2);
+    ~MyArray();
+
+    MyArray(const MyArray<T> &);
+
     class Iterator
     {
     public:
@@ -24,11 +29,10 @@ public:
         int position;
 
     public:
-        Iterator(MyArray<T> &myArray, int position)
-            : myArray(myArray), position(position) {}
+        Iterator(MyArray<T> &myArray, int position);
 
-        T &operator*() { return myArray[position]; }
-        T *operator->() { return &myArray[position]; }
+        T &operator*();
+        T *operator->();
 
         Iterator &operator++()
         {
@@ -42,17 +46,12 @@ public:
             ++(*this);
             return tmp;
         }
+
         friend bool operator==(const Iterator &a, const Iterator &b) { return a.myArray[a.position] == b.myArray[b.position]; };
         friend bool operator!=(const Iterator &a, const Iterator &b) { return a.myArray[a.position] != b.myArray[b.position]; };
     };
-
-    MyArray(int capacity = 2);
-    ~MyArray();
-
-    MyArray(const MyArray<T> &);
-
     Iterator begin() { return Iterator(*this, 0); }
-    Iterator end() { return size == 0 ? Iterator(*this, capacity) : Iterator(*this, size); }
+    Iterator end() { return Iterator(*this, size); }
 
     // getters
     T &getData(int index);
@@ -77,4 +76,5 @@ private:
     void incSize();
     void resize();
 };
+
 #include "myArray.tpp"
