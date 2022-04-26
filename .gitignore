@@ -1,4 +1,7 @@
 .vscode/
+Debug/
+out/
+.vs/
 **/bin/
 **/obj/
 **/output/
