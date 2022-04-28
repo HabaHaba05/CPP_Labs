@@ -58,11 +58,11 @@ void Rectangle::print() const {
 
 
 void Rectangle::draw(SDL_Renderer* renderer) const {
-    Point<int> tlPoint = this->getPoint();
+    Point<int> topLeftPoint = this->getPoint();
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-    SDL_RenderDrawLine(renderer, tlPoint.x, tlPoint.y, this->bottomRightPoint.x, tlPoint.y);
-    SDL_RenderDrawLine(renderer, tlPoint.x, tlPoint.y, tlPoint.x, this->bottomRightPoint.y);
-    SDL_RenderDrawLine(renderer, this->bottomRightPoint.x, tlPoint.y, this->bottomRightPoint.x, this->bottomRightPoint.y);
-    SDL_RenderDrawLine(renderer, tlPoint.x, this->bottomRightPoint.y, this->bottomRightPoint.x, this->bottomRightPoint.y);
+    SDL_RenderDrawLine(renderer, this->bottomRightPoint.x, topLeftPoint.y, this->bottomRightPoint.x, this->bottomRightPoint.y);
+    SDL_RenderDrawLine(renderer, topLeftPoint.x, this->bottomRightPoint.y, this->bottomRightPoint.x, this->bottomRightPoint.y);
+    SDL_RenderDrawLine(renderer, topLeftPoint.x, topLeftPoint.y, this->bottomRightPoint.x, topLeftPoint.y);
+    SDL_RenderDrawLine(renderer, topLeftPoint.x, topLeftPoint.y, topLeftPoint.x, this->bottomRightPoint.y);
     SDL_RenderPresent(renderer);
 }
