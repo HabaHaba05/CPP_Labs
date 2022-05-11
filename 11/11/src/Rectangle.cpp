@@ -15,6 +15,10 @@ Rectangle::Rectangle(Point<int> topLeftPoint, int w, int h)
     this->bottomRightPoint = topLeftPoint + Point<int>(w, h);
 }
 
+Rectangle::~Rectangle(){
+    std::cout << "Rect destroyed\n";
+}
+
 Point<int> Rectangle::getBottomRightPoint() const {
     return this->bottomRightPoint;
 }
@@ -23,24 +27,12 @@ void Rectangle::setBottomRightPoint(Point<int> bottomRightPoint) {
     this->bottomRightPoint = bottomRightPoint;
 }
 
-Point<int> Rectangle::getTopLeftPoint() const {
-    return this->getPoint();
-}
-
-void Rectangle::setTopLeftPoint(Point<int> topLeftPoint) {
-    Point<int> diff = this->bottomRightPoint - topLeftPoint;
-    if (diff.x <= 0 || diff.y <= 0) {
-        throw std::invalid_argument("TopLeftPoint values must be lower than BottomRightPoint");
-    }
-    this->setPoint(topLeftPoint);
-}
-
-int Rectangle::area() const {
+float Rectangle::area() const {
     std::pair<int, int> dim = this->getDimensions();
     return dim.first * dim.second;
 }
 
-int Rectangle::perimeter() const {
+float Rectangle::perimeter() const {
     std::pair<int,int> dim = this->getDimensions();
     return 2 * (dim.first + dim.second);
 }

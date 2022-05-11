@@ -5,20 +5,16 @@ Circle::Circle(Point<int> point, int radius)
     this->radius = radius;
 }
 
+Circle::~Circle() {
+    std::cout << "Circle destroyed\n";
+}
+
 void Circle::setRadius(int radius) {
     this->radius = radius;
 }
 
 int Circle::getRadius() const {
     return this->radius;
-}
-
-Point<int> Circle::getCenterPoint() const {
-    return this->getPoint();
-}
-
-void Circle::setCenterPoint(Point<int> point) {
-    this->setPoint(point);
 }
 
 float Circle::area() const {

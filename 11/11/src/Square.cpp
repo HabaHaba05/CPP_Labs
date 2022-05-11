@@ -10,3 +10,8 @@ Square::Square(Point<int> topLeftPoint, Point<int> bottomRightPoint)
         throw std::invalid_argument("It's rectangle, but not square!!!");
     }
 }
+
+
+Square::~Square() {
+    std::cout << "Square destroyed\n";
+}

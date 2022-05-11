@@ -10,15 +10,13 @@ private:
 public:
     Rectangle(Point<int>, Point<int>);
     Rectangle(Point<int>, int, int);
+    virtual ~Rectangle();
 
     void setBottomRightPoint(Point<int>);
     Point<int> getBottomRightPoint() const;
-    void setTopLeftPoint(Point<int>);
-    Point<int> getTopLeftPoint() const;
 
-    int area() const;
-    int perimeter() const;
-
+    float area() const;
+    float perimeter() const;
     void print() const;
     void draw(SDL_Renderer*) const;
 };

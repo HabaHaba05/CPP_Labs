@@ -12,6 +12,10 @@ Shape::Shape(Point<int> point) {
     this->point = point;
 }
 
+Shape::~Shape() {
+    std::cout << "Shape destroyed\n";
+}
+
 void Shape::setPoint(Point<int> point) {
     this->point = point;
 }

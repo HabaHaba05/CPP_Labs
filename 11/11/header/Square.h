@@ -6,4 +6,5 @@ class Square : public Rectangle {
 public:
     Square(Point<int>, int);
     Square(Point<int>, Point<int>);
+    virtual ~Square();
 };
