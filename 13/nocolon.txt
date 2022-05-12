@@ -1,0 +1,5 @@
+word:"hello"
+number1:10
+nocolon1
+number2:20
+bool1:true
