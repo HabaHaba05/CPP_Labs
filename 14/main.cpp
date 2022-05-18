@@ -57,7 +57,7 @@ int main()
     rd2->setNext(rd3);
 
     cart.addItem(Item(30, "nzn", "op"));
-    cart.addItem(Item(-40, "nzn", "op"));
+    cart.addItem(Item(-40, "nzn", "op")); // Changing this price for testing all that chaining stuff
     shop.setDiscount(nullptr);
     cout << "Without discount: " << shop.calculateCartPrice(cart) << endl;
 
